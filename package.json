@@ -1,0 +1,29 @@
+{
+  "name": "hack",
+  "version": "1.0.0",
+  "description": "hack",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "prettier": "^2.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tawfiknasser/hack2020.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tawfiknasser/hack2020/issues"
+  },
+  "homepage": "https://github.com/tawfiknasser/hack2020#readme"
+}
