@@ -15,5 +15,6 @@
     "path": "^0.12.7",
     "dotenv": "^8.2.0",
     "pg": "^8.5.1"
-  }
+  },
+  "heroku-postbuild": "cd frontend && ./build.sh"
 }
