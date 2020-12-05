@@ -26,7 +26,7 @@ exports.post = (req, res) => {
       console.log("Done writing");
       console.log(datajson); 
 
-      res.JSON(datajson);
+      res.json(datajson);
 
   }); 
 }); 

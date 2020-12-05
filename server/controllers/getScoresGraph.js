@@ -9,22 +9,23 @@ exports.get = (req, res) => {
     const datajson = JSON.parse(data); 
 
     let graphValues = []
-    let count = 0;
+    let count = []
     for (let key in datajson["Students"]) {
         if (datajson["Students"].hasOwnProperty(key)) {
             for(let i = 0; i < datajson["Students"][key].length; i++){
                 if(graphValues.length > i){
-                    graphValues[i] = ((graphValues[i] * count) + datajson["Students"][key][i]) / (count + 1)
-                    count++
+                    graphValues[i] = ((graphValues[i] * count[i]) + datajson["Students"][key][i]) / (count[i] + 1)
+                    count[i]++
                 } else {
+                    count.push(0);
                     graphValues.push(datajson["Students"][key][i])
-                    count++
+                    count[i]++
                 }
             }
         }
 } 
 
-res.JSON(graphValues);
+    res.json({graphValues});
   
 
 }); 

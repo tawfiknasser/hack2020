@@ -19,7 +19,7 @@ exports.post = (req, res) => {
             requestedStudent = -1
         }
 
-        res.JSON(requestedStudent);
+        res.json(requestedStudent);
   
 
 }); 
