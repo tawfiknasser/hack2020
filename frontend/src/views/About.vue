@@ -1,6 +1,5 @@
 <template>
   <div class="graph-box-report">
-        homeeeeee
             <div ref="learning_curve"></div>
 
   </div>
@@ -30,22 +29,31 @@ export default {
   },
   mounted() {
       
-    //  Plotly.plot(this.$refs.learning_curve ,
-    //   [
-    //     {
-    //       y: [0],
-    //       mode: "lines",
-    //       line: { color: "#80CAF6" }
-    //     }
-    //   ],
-    //   this.layout,
-    //   {
-    //     displaylogo: false,
-    //     responsive: true
-    //   });
+     Plotly.plot(this.$refs.learning_curve ,
+      [
+        {
+          y: [0],
+          mode: "lines",
+          line: { color: "#80CAF6" }
+        }
+      ],
+      this.layout,
+      {
+        displaylogo: false,
+        responsive: true
+      });
 
 
-    //  setInterval(()=>{
+     setInterval(()=>{
+       console.log("fffffffff");
+       this.learningCurveData[0].y = this.Gdata
+      this.learningCurveData[0].x = this.Gdata.map((el,i)=>i)
+       Plotly.react(
+            this.$refs.learning_curve,
+            [...this.learningCurveData],
+            this.layout
+          );
+     },1000)
     //   //    console.log("ffff");
 
     //   //  // request
@@ -65,11 +73,12 @@ export default {
   methods: {},
   watch: {
     getData : {
+      deep : true,
       handler(){
 
         console.log("dddd");
         
-        console.log(   this.Gdata);
+        console.log(this.Gdata);
         
       }
     }
@@ -100,12 +109,12 @@ export default {
     // }
   },
   computed: {
-    ...mapGetters(["_$"]),
     layout() {
       return {
         xaxis: {
+
           title: {
-            text: "Average",
+            text: "Time",
             font: {
               family: "Courier New, monospace",
               size: 18,
@@ -114,9 +123,9 @@ export default {
           }
         },
         yaxis: {
-        range : [65,215],
+        range : [0,120],
           title: {
-            text: "Time",
+            text: "Normalized Average",
             font: {
               family: "Courier New, monospace",
               size: 18,

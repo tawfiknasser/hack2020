@@ -7,6 +7,7 @@ import cv2
 from gaze_tracking import GazeTracking
 
 import requests
+import time
 
 gaze = GazeTracking()
 webcam = cv2.VideoCapture(10)
@@ -17,7 +18,7 @@ while True:
 
     # We send this frame to GazeTracking to analyze it
     gaze.refresh(frame)
-
+    time.sleep(0.1)
     frame = gaze.annotated_frame()
     text = ""
     score = 100
@@ -25,7 +26,6 @@ while True:
     if gaze.is_blinking():
         score = 20
         text = "Blinking"
-        response = requests.post("http://localhost:4000/api/reportScore", data = {'studentID':'0','score':score})
     elif gaze.is_right():
         score = 70
         text = "Looking right"
@@ -35,6 +35,9 @@ while True:
     elif gaze.is_center():
         score = 0
         text = "Looking center"
+
+    
+    response = requests.post("http://localhost:4000/api/reportScore", json = {"studentID":"0","score":score})
 
     cv2.putText(frame, text, (90, 60), cv2.FONT_HERSHEY_DUPLEX, 1.6, (147, 58, 31), 2)
 
