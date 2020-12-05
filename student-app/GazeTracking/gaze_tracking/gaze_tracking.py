@@ -99,12 +99,12 @@ class GazeTracking(object):
     def is_right(self):
         """Returns true if the user is looking to the right"""
         if self.pupils_located:
-            return self.horizontal_ratio() <= 0.35
+            return self.horizontal_ratio() <= 0.58
 
     def is_left(self):
         """Returns true if the user is looking to the left"""
         if self.pupils_located:
-            return self.horizontal_ratio() >= 0.65
+            return self.horizontal_ratio() >= 0.75
 
     def is_center(self):
         """Returns true if the user is looking to the center"""
@@ -115,6 +115,7 @@ class GazeTracking(object):
         """Returns true if the user closes his eyes"""
         if self.pupils_located:
             blinking_ratio = (self.eye_left.blinking + self.eye_right.blinking) / 2
+
             return blinking_ratio > 3.8
 
     def annotated_frame(self):
@@ -122,7 +123,7 @@ class GazeTracking(object):
         frame = self.frame.copy()
 
         if self.pupils_located:
-            color = (0, 255, 0)
+            color = (255, 255, 0)
             x_left, y_left = self.pupil_left_coords()
             x_right, y_right = self.pupil_right_coords()
             cv2.line(frame, (x_left - 5, y_left), (x_left + 5, y_left), color)
