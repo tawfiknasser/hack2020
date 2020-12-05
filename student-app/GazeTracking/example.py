@@ -6,6 +6,8 @@ Check the README.md for complete documentation.
 import cv2
 from gaze_tracking import GazeTracking
 
+import requests
+
 gaze = GazeTracking()
 webcam = cv2.VideoCapture(10)
 
@@ -23,6 +25,7 @@ while True:
     if gaze.is_blinking():
         score = 20
         text = "Blinking"
+        response = requests.post("http://localhost:4000/api/reportScore", data = {'studentID':'0','score':score})
     elif gaze.is_right():
         score = 70
         text = "Looking right"
